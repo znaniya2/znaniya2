@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Знания² | Подготовка к ОГЭ | Иваново</title>
+  <style>
+    :root{
+      --bg:#fff8f2;
+      --card:#ffffff;
+      --text:#1f1f1f;
+      --muted:#666;
+      --line:#e9ddd1;
+      --accent:#f28c28;
+      --accent-dark:#d96f0d;
+      --soft:#fff1e3;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+      --radius:24px;
+      --max:1160px;
+    }
+    
+    *{box-sizing:border-box; margin:0;}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#fffaf6 0%,#fff5ec 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px; position: relative; z-index: 5;}
+    .section{padding:72px 0}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow); backdrop-filter: blur(2px);}
+
+    header{
+      position:sticky;top:0;z-index:30;
+      background:rgba(255,248,242,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .logo{font-size:30px;font-weight:800;letter-spacing:.2px}
+    .logo sup{font-size:15px;vertical-align:text-top;color:var(--accent)}
+    .menu{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .menu a{font-size:17px;color:#444;padding:8px 0; border-bottom: 2px solid transparent; transition: 0.2s;}
+    .menu a:hover{border-bottom-color: var(--accent);}
+    .nav-btn{
+      padding:12px 18px;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;
+      box-shadow:var(--shadow); transition: 0.15s;
+    }
+    .nav-btn:hover{background: var(--accent-dark); transform: scale(1.02);}
+
+    /* бургер */
+    .burger{
+      display:none;flex-direction:column;justify-content:center;gap:5px;
+      width:40px;height:40px;background:none;border:none;cursor:pointer;padding:4px;
+    }
+    .burger span{display:block;height:3px;border-radius:2px;background:var(--text);transition:0.25s;}
+    .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+    .burger.open span:nth-child(2){opacity:0;}
+    .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+    /* мобильное меню */
+    .mobile-menu{
+      display:none;flex-direction:column;gap:0;
+      background:rgba(255,248,242,.98);backdrop-filter:blur(10px);
+      border-top:1px solid var(--line);
+    }
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{
+      padding:14px 20px;font-size:16px;color:#333;border-bottom:1px solid var(--line);
+    }
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu .mob-cta{
+      margin:14px 20px;padding:14px;border-radius:14px;background:var(--accent);
+      color:#fff;font-weight:700;text-align:center;
+    }
+
+    h1,h2,h3{margin:0 0 14px}
+    h1{font-size:46px;line-height:1.05}
+    h2{font-size:34px}
+    h3{font-size:22px}
+    p{margin:0 0 12px;line-height:1.6}
+    .muted{color:var(--muted)}
+    .accent{color:var(--accent-dark)}
+/* таймер */
+    .timer-wrapper {
+      background: linear-gradient(135deg, #f28c28 0%, #d96f0d 100%);
+      border-radius: 60px;
+      padding: 18px 24px;
+      margin-bottom: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 15px 30px rgba(242,140,40,0.3);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+    .timer-text {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.1);
+      padding: 6px 16px;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+    .timer-digits {
+      display: flex;
+      gap: 18px;
+    }
+    .timer-block {
+      text-align: center;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      padding: 8px 12px;
+      border-radius: 18px;
+      min-width: 70px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .timer-number {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+    .timer-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .hero-grid{
+      display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:stretch;
+    }
+    .teacher-photo{
+      min-height:0;
+      border-radius:28px;
+      background:linear-gradient(145deg,#ffd4a8 0%,#fff0de 100%);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .teacher-photo img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-card{padding:34px}
+    .hero-list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+    .hero-list li{padding-left:20px;position:relative;line-height:1.5}
+    .hero-list li::before{content:"•";position:absolute;left:0;top:0;color:var(--accent);font-size:22px;line-height:1}
+
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px}
+    .course-card{padding:26px; position: relative;}
+    .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
+    .pill{padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--line);font-size:13px}
+    .list{margin:12px 0 0;padding-left:18px;line-height:1.65}
+
+    .video-card{padding:22px; background: var(--card);}
+    .video-frame{
+      aspect-ratio:16/9;border-radius:24px;background:linear-gradient(145deg,#fff0de 0%,#ffd7af 100%);
+      display:flex;align-items:center;justify-content:center;border:1px solid var(--line); position: relative; overflow: hidden;
+    }
+    .play{
+      width:92px;height:92px;border-radius:50%;background:var(--accent);position:relative;box-shadow:var(--shadow); cursor: pointer; transition: 0.2s;
+    }
+    .play:hover{transform: scale(1.07); background: var(--accent-dark);}
+    .play::after{
+      content:"";position:absolute;left:38px;top:29px;border-left:24px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;
+    }
+
+    .plan-details-grid {
+      display: flex; flex-direction: column; gap: 16px; margin-top: 24px;
+    }
+    .plan-details-grid details {
+      padding: 16px 18px; border-radius: 18px; background: #fff; box-shadow: var(--shadow); border: 1px solid var(--line);
+      position: relative;
+      transition: 0.1s;
+    }
+    .plan-details-grid details[open] {
+      background-color: #fffdfa;
+    }
+    .plan-details-grid summary {
+      cursor: pointer; font-size: 18px; font-weight: 700; list-style: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan-details-grid summary::before {
+      content: "▶"; color: var(--accent); font-size: 14px; transition: transform 0.2s;
+    }
+    .plan-details-grid details[open] summary::before {
+      content: "▼";
+    }
+    .plan-details-grid .list {
+      margin-top: 10px;
+    }
+ .form-card{padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+    .form-box{display:grid;gap:14px}
+    .form-box input,.form-box textarea{
+      width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);font:inherit;background:#fff;
+    }
+    .form-box button{
+      padding:15px 18px;border:none;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;
+    }
+
+    .reviews-grid{
+      display:flex;flex-wrap:nowrap;overflow-x:auto;gap:20px;
+      scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+      padding-bottom:12px;
+    }
+    .reviews-grid .review{flex:0 0 320px;scroll-snap-align:start}
+    .review{padding:24px}
+    .stars{color:var(--accent);font-size:18px;margin-bottom:12px}
+
+    .gallery-grid{
+      display:flex;flex-wrap:nowrap;overflow-x:auto;gap:16px;
+      scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+      padding-bottom:12px;
+    }
+    .gallery-grid .gallery-item{flex:0 0 260px;scroll-snap-align:start}
+    .gallery-item{
+      aspect-ratio:4/5;border-radius:20px;background:linear-gradient(145deg,#ffe0c0 0%,#fff1df 100%);
+      border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:#b8721b;font-weight:700;
+    }
+
+    footer{padding:36px 0 54px}
+    .footer-card{padding:24px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+    .footer-title{font-size:24px;font-weight:800}
+    .footer-col{display:grid;gap:10px}
+
+    @media (max-width: 980px){
+      .plan-grid,.form-card,.footer-card,.courses-grid{grid-template-columns:1fr}
+      .hero-grid{grid-template-columns:200px 1fr;align-items:stretch}
+      .teacher-photo{min-height:0}
+      .menu{display:none}
+      .burger{display:flex}
+      .nav-btn{display:none}
+      h1{font-size:34px}
+      h2{font-size:28px}
+      .section{padding:40px 0}
+      .timer-outer{padding:0 16px;box-sizing:border-box;width:100%}
+      .timer-wrapper { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+      .timer-digits { flex-wrap: wrap; }
+
+      /* мобилка: карточки поуже */
+      .reviews-grid .review{flex:0 0 80vw}
+      .gallery-grid .gallery-item{flex:0 0 72vw}
+    }
+    @media (max-width: 580px){
+      .hero-grid{grid-template-columns:1fr}
+      .teacher-photo{aspect-ratio:unset}
+      .teacher-photo img{position:static;height:auto;width:100%}
+
+      /* таймер: все цифры в одну строку */
+      .timer-outer > div{border-radius:24px;padding:14px 16px;width:100%;box-sizing:border-box;gap:12px}
+      .timer-outer > div > div:first-of-type{width:100%;justify-content:space-between}
+      .timer-outer > div > div > div{flex:1;min-width:0}
+    }
+    .subject-row{display:flex;gap:12px;flex-wrap:wrap}
+    .subject-check{
+      display:flex;align-items:center;gap:8px;cursor:pointer;
+      padding:11px 16px;border-radius:14px;border:1px solid var(--line);
+      background:#fff;font-size:15px;transition:0.15s;user-select:none;
+    }
+    .subject-check:has(input:checked){
+      border-color:var(--accent);background:var(--soft);color:var(--accent-dark);font-weight:600;
+    }
+    .subject-check input{
+      accent-color:var(--accent);width:16px;height:16px;cursor:pointer;
+    }
+
+    .hero-list li strong {
+      color: var(--accent-dark);
+    }
+ </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="logo">Знания<sup>2</sup></a>
+      <nav class="menu">
+        <a href="#about">О преподавателе</a>
+        <a href="#courses">Курсы</a>
+        <a href="#video">Видео</a>
+        <a href="#signup">Запись</a>
+        <a href="#plan">План курса</a>
+        <a href="#gallery">Фото</a>
+        <a href="#reviews">Отзывы</a>
+      </nav>
+      <a href="#signup" class="nav-btn">Записаться</a>
+      <button class="burger" id="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu">
+      <a href="#about" class="mob-link">О преподавателе</a>
+      <a href="#courses" class="mob-link">Курсы</a>
+      <a href="#video" class="mob-link">Видео</a>
+      <a href="#plan" class="mob-link">План курса</a>
+      <a href="#gallery" class="mob-link">Фото</a>
+      <a href="#reviews" class="mob-link">Отзывы</a>
+      <a href="#signup" class="mob-cta">Записаться</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="section" id="about">
+      <!-- ТАЙМЕР (вставь этот блок) -->
+<div class="timer-outer" style="display: flex; justify-content: center; margin: 30px 0 20px;">
+  <div style="background: linear-gradient(135deg, #f28c28, #d96f0d); border-radius: 60px; padding: 16px 30px; display: inline-flex; align-items: center; gap: 30px; flex-wrap: wrap; box-shadow: 0 10px 25px rgba(242,140,40,0.3); color: white;">
+    <span style="font-size: 20px; font-weight: 600; letter-spacing: 0.5px; background: rgba(0,0,0,0.1); padding: 6px 18px; border-radius: 40px;">Старт курса через</span>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+      <div style="text-align: center; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 8px 12px; border-radius: 18px; min-width: 65px; border: 1px solid rgba(255,255,255,0.3);">
+        <div style="font-size: 36px; font-weight: 800; line-height: 1;" id="days">00</div>
+        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.9;">дней</div>
+      </div>
+      <div style="text-align: center; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 8px 12px; border-radius: 18px; min-width: 65px; border: 1px solid rgba(255,255,255,0.3);">
+        <div style="font-size: 36px; font-weight: 800; line-height: 1;" id="hours">00</div>
+        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.9;">часов</div>
+      </div>
+      <div style="text-align: center; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 8px 12px; border-radius: 18px; min-width: 65px; border: 1px solid rgba(255,255,255,0.3);">
+        <div style="font-size: 36px; font-weight: 800; line-height: 1;" id="minutes">00</div>
+        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.9;">минут</div>
+      </div>
+      <div style="text-align: center; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 8px 12px; border-radius: 18px; min-width: 65px; border: 1px solid rgba(255,255,255,0.3);">
+        <div style="font-size: 36px; font-weight: 800; line-height: 1;" id="seconds">00</div>
+        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.9;">секунд</div>
+      </div>
+    </div>
+    <a href="#signup" style="display:inline-flex;align-items:center;background:#fff;color:#d96f0d;font-weight:800;font-size:16px;padding:12px 24px;border-radius:40px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.15);white-space:nowrap;transition:0.15s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">Записаться →</a>
+  </div>
+</div>
+ <h1 style="font-size:52px;text-align:center;margin-bottom:30px; background: linear-gradient(135deg, #f28c28 0%, #c05a0e 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 4px 12px rgba(242,140,40,0.2);">Экспресс курс подготовки к ОГЭ</h1>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="teacher-photo">
+          <img src="1.jpg" alt="Преподаватель Вальков Даниил">
+        </div>
+        <div class="hero-card card">
+          <div class="pill-row" style="margin-top:0;margin-bottom:14px;">
+            <span class="pill">Экспресс-курс</span>
+            <span class="pill">2 месяца</span>
+            <span class="pill">Мини-группы до 6 человек</span>
+          </div>
+          <h1>Преподаватель <span class="accent">Вальков Даниил</span></h1>
+          <p class="muted">Экспресс-подготовка к ОГЭ в мини-группах в Иваново.</p>
+          <ul class="hero-list">
+            <li>более 4 лет опыта в образовании;</li>
+            <li>выпускник ИГЭУ (Прикладная информатика);</li>
+            <li>наставник победителей математических олимпиад;</li>
+            <li>ученики стабильно сдают ОГЭ на 4 и 5.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <div class="wrap">
+        <h2>Видео о центре</h2>
+        <div class="video-card card">
+          <div class="video-frame">
+            <div class="play" role="button" aria-label="Воспроизвести видео"></div>
+          </div>
+          <p class="muted" style="margin-top: 16px; text-align: center;">▶ Короткий ролик о формате занятий и преподавателе</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="wrap">
+        <h2>Курсы ОГЭ</h2>
+        <p class="muted">Математика и информатика — два основных направления.</p>
+        <div class="courses-grid">
+          <article class="course-card card">
+            <h3>ОГЭ Математика</h3>
+            <div class="pill-row">
+              <span class="pill">2 месяца</span>
+              <span class="pill">16 занятий</span>
+              <span class="pill">90 минут</span>
+              <span class="pill">до 6 учеников</span>
+            </div>
+            <ul class="list">
+              <li>повторяем ключевые темы 7–9 класса;</li>
+              <li>учимся уверенно решать задания ОГЭ;</li>
+              <li>разбираем типовые ошибки и сложные темы;</li>
+              <li>тренируем скорость и аккуратность оформления;</li>
+              <li>консультация с психологом перед экзаменом;</li>
+              <li>2 личные встречи с педагогом 1 на 1 в месяц;</li>
+              <li>выпускной после сдачи экзамена.</li>
+            </ul>
+          </article>
+          <article class="course-card card">
+            <h3>ОГЭ Информатика</h3>
+            <div class="pill-row">
+              <span class="pill">2 месяца</span>
+              <span class="pill">16 занятий</span>
+              <span class="pill">90 минут</span>
+              <span class="pill">до 6 учеников</span>
+            </div>
+            <ul class="list">
+              <li>разбираем все задания экзамена по шагам;</li>
+              <li>отрабатываем логику, алгоритмы и практические задачи;</li>
+              <li>учимся понимать структуру экзамена, а не зубрить ответы;</li>
+              <li>решаем пробные варианты и закрепляем результат;</li>
+              <li>консультация с психологом перед экзаменом;</li>
+              <li>2 личные встречи с педагогом 1 на 1 в месяц;</li>
+              <li>выпускной после сдачи экзамена.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+ <section class="section" id="signup">
+      <div class="wrap">
+        <div class="form-card card">
+          <div>
+            <h2>Запись на курс</h2>
+            <p class="muted">Оставьте контакты, и мы свяжемся с вами для записи в группу.</p>
+            <p><strong>Мини-группы до 6 человек</strong><br>ОГЭ математика и информатика</p>
+          </div>
+          <form class="form-box" id="signup-form">
+            <input type="text" name="name" placeholder="Имя" required>
+            <input type="tel" name="phone" id="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+            <div class="subject-row">
+              <label class="subject-check">
+                <input type="checkbox" name="subject" value="Математика">
+                <span>Математика</span>
+              </label>
+              <label class="subject-check">
+                <input type="checkbox" name="subject" value="Информатика">
+                <span>Информатика</span>
+              </label>
+            </div>
+            <textarea name="comment" rows="4" placeholder="Комментарий"></textarea>
+            <button type="submit" id="signup-btn">Отправить заявку</button>
+            <div id="signup-status" style="font-size:14px; color:var(--muted);"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plan">
+      <div class="wrap">
+        <h2>План курса</h2>
+        <p class="muted">Экспресс-курс за 2 месяца. Нажмите на блок, чтобы раскрыть подробности.</p>
+        <div class="plan-details-grid">
+          <details>
+            <summary>День открытых дверей</summary>
+            <div style="margin-top:14px;line-height:1.7;">
+              <p><strong>4 апреля</strong></p>
+              <ul class="list">
+                <li>знакомство с преподавателем;</li>
+                <li>рассказ о программе подготовки;</li>
+                <li>ответы на вопросы родителей;</li>
+                <li>запись в группы.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Формат курса</summary>
+            <div style="margin-top:14px;line-height:1.7;">
+              <p>Продолжительность курса: <strong>2 месяца</strong></p>
+              <ul class="list">
+                <li>16 занятий по каждому предмету;</li>
+                <li>2 раза в неделю;</li>
+                <li>длительность занятия 90 минут;</li>
+                <li>группы до 6 учеников;</li>
+                <li>домашнее задание после каждого занятия.</li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>ОГЭ Математика</summary>
+            <div style="margin-top:14px;line-height:1.7;">
+              <p>Вторник 18:00<br>Четверг 18:00</p>
+              <p>Период занятий: <strong>8 апреля — 29 мая</strong></p>
+              <p>Экзамен: <strong>2 июня</strong></p>
+            </div>
+          </details>
+          <details>
+            <summary>ОГЭ Информатика</summary>
+            <div style="margin-top:14px;line-height:1.7;">
+              <p>Четверг 16:30<br>Суббота 13:00</p>
+              <p>Период занятий: <strong>10 апреля — 31 мая</strong></p>
+              <p>Экзамен: <strong>6 июня</strong></p>
+            </div>
+          </details>
+          <details>
+            <summary>Как проходят занятия</summary>
+            <div style="margin-top:14px;line-height:1.7;">
+              <ul class="list">
+                <li>объяснение темы;</li>
+                <li>разбор заданий формата ОГЭ;</li>
+                <li>решение задач на практике;</li>
+                <li>проверка и разбор домашнего задания.</li>
+              </ul>
+              <p>Ученики постепенно проходят все типы заданий экзамена и учатся быстро их решать.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+<section class="section" id="gallery">
+      <div class="wrap">
+        <h2>Фото центра</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">Фото 1</div>
+          <div class="gallery-item">Фото 2</div>
+          <div class="gallery-item">Фото 3</div>
+          <div class="gallery-item">Фото 4</div>
+          <div class="gallery-item">Фото 1</div>
+          <div class="gallery-item">Фото 2</div>
+          <div class="gallery-item">Фото 3</div>
+          <div class="gallery-item">Фото 4</div>
+          <div class="gallery-item">Фото 1</div>
+          <div class="gallery-item">Фото 2</div>
+          <div class="gallery-item">Фото 3</div>
+          <div class="gallery-item">Фото 4</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="wrap">
+        <h2>Отзывы</h2>
+        <div class="reviews-grid">
+          <div class="review card">
+            <div class="stars">★★★★★</div>
+            <p>Здесь будет отзыв родителя о подготовке к ОГЭ по математике.</p>
+          </div>
+          <div class="review card">
+            <div class="stars">★★★★★</div>
+            <p>Здесь будет отзыв об успехах ученика по информатике и атмосфере на занятиях.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-card card">
+        <div class="footer-col">
+          <div class="footer-title">Знания<sup>2</sup></div>
+          <div>Подготовка к ОГЭ по математике и информатике</div>
+          <div class="muted">Иваново</div>
+        </div>
+        <div class="footer-col">
+          <strong>Контакты</strong>
+          <div>Телефон: +7 (___) ___-__-__</div>
+          <div>WhatsApp</div>
+          <div>Telegram</div>
+        </div>
+        <div class="footer-col">
+          <strong>Навигация</strong>
+          <a href="#about">О преподавателе</a>
+          <a href="#courses">Курсы</a>
+          <a href="#signup">Запись</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+
+// маска телефона
+(function(){
+
+var phoneInput = document.getElementById("phone");
+
+function formatPhone(value){
+
+var digits = value.replace(/\D/g,"");
+
+if(digits.startsWith("8")) digits="7"+digits.slice(1);
+if(!digits.startsWith("7")) digits="7"+digits;
+
+digits = digits.substring(0,11);
+
+var result = "+7";
+
+if(digits.length>1) result+=" ("+digits.substring(1,4);
+if(digits.length>=5) result+=") "+digits.substring(4,7);
+if(digits.length>=8) result+="-"+digits.substring(7,9);
+if(digits.length>=10) result+="-"+digits.substring(9,11);
+
+return result;
+
+}
+
+phoneInput.addEventListener("input",function(){
+phoneInput.value = formatPhone(phoneInput.value);
+});
+
+})();
+
+
+// отправка формы
+(function(){
+
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3UYOS5qdbc1SIWL8vAMrMiIhrqXJaz1oHGZuHOEMbgTNtDd8C--flFyxu0IHrPrDdUg/exec";
+var FORM_SECRET = "z2_form_secret_917";
+
+var form = document.getElementById("signup-form");
+var btn = document.getElementById("signup-btn");
+var status = document.getElementById("signup-status");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+btn.disabled=true;
+btn.textContent="Отправляем...";
+
+var fd = new FormData(form);
+var subjects = fd.getAll("subject").join(", ") || "-";
+
+var data={
+name: fd.get("name"),
+phone: fd.get("phone"),
+subject: subjects,
+comment: fd.get("comment"),
+secret: FORM_SECRET
+};
+
+fetch(SCRIPT_URL,{
+method:"POST",
+body: JSON.stringify(data)
+})
+.then(function(){
+
+status.textContent="Заявка отправлена";
+status.style.color="green";
+form.reset();
+
+})
+.catch(function(){
+
+status.textContent="Ошибка отправки";
+status.style.color="red";
+
+})
+.finally(function(){
+
+btn.disabled=false;
+btn.textContent="Отправить заявку";
+
+});
+
+});
+
+})();
+
+</script>
+</body>
+</html>
+
