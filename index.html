@@ -387,6 +387,8 @@
       object-fit:cover;
     }
 
+
+    
     .map-card{
       overflow:hidden;
       border-radius:24px;
@@ -404,6 +406,29 @@
       padding:22px;
       border-top:1px solid var(--line);
     }
+
+      .agree-row{
+        display:flex;
+        align-items:flex-start;
+        gap:8px;
+        font-size:13px;
+        line-height:1.4;
+        color:#444;
+      }
+
+      .agree-row input{
+        width:16px;
+        height:16px;
+        margin-top:3px;
+        cursor:pointer;
+      }
+
+      .agree-row a{
+        color:var(--accent-dark);
+        text-decoration:underline;
+      }
+
+
 
     footer{padding:36px 0 54px}
     .footer-card{
@@ -586,6 +611,16 @@
             <input type="tel" name="phone" id="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" maxlength="18" required>
 
             <input type="text" name="website" id="website" class="honeypot" tabindex="-1" autocomplete="off">
+
+
+            <label style="font-size:14px;line-height:1.4;display:flex;gap:8px;align-items:flex-start;">
+  
+                              <div class="agree-row">
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree">
+                      Я согласен с <a href="privacy.html" target="_blank">политикой обработки данных</a>
+                    </label>
+                  </div>
 
             <button type="submit" id="signup-btn">Отправить заявку</button>
             <div id="signup-status" style="font-size:14px;color:var(--muted);"></div>
@@ -801,6 +836,10 @@
       var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEXxljoMFqczf3gBF41FhZkvKgmn-yJHA_FFutU1IO4iAXax-VB-TcaN9Mki8YInaCDQ/exec";
       var FORM_SECRET = "z2_form_secret_917";
 
+
+      
+
+
       var form = document.getElementById('signup-form');
       var btn = document.getElementById('signup-btn');
       var status = document.getElementById('signup-status');
@@ -847,6 +886,15 @@
           return;
         }
 
+
+        var agree = document.getElementById('agree').checked;
+
+        if (!agree) {
+          status.textContent = 'Подтвердите согласие';
+          status.style.color = 'red';
+          return;
+        }
+        
         btn.disabled = true;
         btn.textContent = 'Отправляем...';
         status.textContent = '';
