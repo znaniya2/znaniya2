@@ -22,6 +22,7 @@
     *{box-sizing:border-box;margin:0}
     html{scroll-behavior:smooth}
     body{
+      padding-top:80px; /* высота шапки */
       margin:0;
       font-family:Inter, Arial, sans-serif;
       color:var(--text);
@@ -41,13 +42,14 @@
     }
 
     header{
-      position:sticky;
-      top:0;
-      z-index:30;
-      background:rgba(255,248,242,.95);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
-    }
+  position:fixed; /* было sticky */
+  top:0;
+  left:0;
+  width:100%;
+  z-index:999;
+  background:#fff8f2; /* убрали прозрачность */
+  border-bottom:1px solid var(--line);
+}
 
     .nav{
       min-height:78px;
@@ -113,7 +115,7 @@
       flex-direction:column;
       gap:0;
       background:rgba(255,248,242,.98);
-      backdrop-filter:blur(10px);
+    
       border-top:1px solid var(--line);
     }
     .mobile-menu.open{display:flex}
