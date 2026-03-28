@@ -4,504 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Знания² | Подготовка к ОГЭ по математике | Иваново</title>
-  <style>
-    :root{
-      --bg:#fff8f2;
-      --card:#ffffff;
-      --text:#1f1f1f;
-      --muted:#666;
-      --line:#e9ddd1;
-      --accent:#f28c28;
-      --accent-dark:#d96f0d;
-      --soft:#fff1e3;
-      --shadow:0 10px 28px rgba(0,0,0,.08);
-      --radius:24px;
-      --max:1160px;
-    }
-
-    *{box-sizing:border-box;margin:0}
-    html{scroll-behavior:smooth}
-    body{
-      padding-top:80px; /* высота шапки */
-      margin:0;
-      font-family:Inter, Arial, sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,#fffaf6 0%,#fff5ec 100%);
-      overflow-x:hidden;
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-    .section{padding:40px 0}
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    header{
-  position:fixed; /* было sticky */
-  top:0;
-  left:0;
-  width:100%;
-  z-index:999;
-  background:#fff8f2; /* убрали прозрачность */
-  border-bottom:1px solid var(--line);
-}
-
-    .nav{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-
-    .logo{font-size:30px;font-weight:800;letter-spacing:.2px}
-    .logo sup{font-size:15px;vertical-align:text-top;color:var(--accent)}
-
-    .menu{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-    .menu a{
-      font-size:17px;
-      color:#444;
-      padding:8px 0;
-      border-bottom:2px solid transparent;
-      transition:.2s;
-    }
-    .menu a:hover{border-bottom-color:var(--accent)}
-
-    .nav-btn{
-      padding:12px 18px;
-      border-radius:14px;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      box-shadow:var(--shadow);
-      transition:.15s;
-    }
-    .nav-btn:hover{background:var(--accent-dark);transform:scale(1.02)}
-
-    .burger{
-      display:none;
-      flex-direction:column;
-      justify-content:center;
-      gap:5px;
-      width:42px;
-      height:42px;
-      background:rgba(255,255,255,.96);
-      border:1px solid var(--line);
-      border-radius:10px;
-      cursor:pointer;
-      padding:8px;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .burger span{
-      display:block;
-      height:3px;
-      border-radius:2px;
-      background:#111;
-      transition:.25s;
-      width:100%;
-      opacity:1;
-    }
-    .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
-    .burger.open span:nth-child(2){opacity:0}
-    .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
-
-    .mobile-menu{
-      display:none;
-      flex-direction:column;
-      gap:0;
-      background:rgba(255,248,242,.98);
-    
-      border-top:1px solid var(--line);
-    }
-    .mobile-menu.open{display:flex}
-    .mobile-menu a{
-      padding:14px 20px;
-      font-size:16px;
-      color:#333;
-      border-bottom:1px solid var(--line);
-    }
-    .mobile-menu a:last-child{border-bottom:none}
-    .mobile-menu .mob-cta{
-      margin:14px 20px;
-      padding:14px;
-      border-radius:14px;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      text-align:center;
-    }
-
-    h1,h2,h3{margin:0 0 14px}
-    h1{font-size:46px;line-height:1.05}
-    h2{font-size:34px}
-    h3{font-size:22px}
-    p{margin:0 0 12px;line-height:1.6}
-    .muted{color:var(--muted)}
-    .accent{color:var(--accent-dark)}
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:380px 1fr;
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .teacher-photo{
-      border-radius:28px;
-      background:linear-gradient(145deg,#ffd4a8 0%,#fff0de 100%);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position:relative;
-      min-height:100%;
-    }
-
-    .teacher-photo img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .hero-card{padding:34px}
-    .hero-list{
-      margin:18px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:12px;
-    }
-    .hero-list li{
-      padding-left:20px;
-      position:relative;
-      line-height:1.5;
-    }
-    .hero-list li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:var(--accent);
-      font-size:22px;
-      line-height:1;
-    }
-
-    .courses-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:22px;
-      margin-top:26px;
-    }
-
-    .course-card{padding:26px}
-    .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      background:var(--soft);
-      border:1px solid var(--line);
-      font-size:13px
-    }
-    .list{margin:12px 0 0;padding-left:18px;line-height:1.65}
-
-    .bonus-box{
-      margin-top:20px;
-      padding:20px;
-      border-radius:20px;
-      background:linear-gradient(135deg,#fff1e3 0%,#ffe0c0 100%);
-      border:1px solid #ffd7af;
-    }
-    .bonus-box h3{
-      margin-bottom:10px;
-      color:#d96f0d;
-      font-size:20px;
-    }
-    .bonus-box ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.7;
-      font-weight:500;
-    }
-
-    .video-card{padding:22px}
-    .video-frame{
-      aspect-ratio:16/9;
-      border-radius:24px;
-      background:linear-gradient(145deg,#fff0de 0%,#ffd7af 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid var(--line);
-      position:relative;
-      overflow:hidden;
-    }
-    .play{
-      width:92px;
-      height:92px;
-      border-radius:50%;
-      background:var(--accent);
-      position:relative;
-      box-shadow:var(--shadow);
-      cursor:pointer;
-      transition:.2s;
-    }
-    .play:hover{transform:scale(1.07);background:var(--accent-dark)}
-    .play::after{
-      content:"";
-      position:absolute;
-      left:38px;
-      top:29px;
-      border-left:24px solid #fff;
-      border-top:16px solid transparent;
-      border-bottom:16px solid transparent;
-    }
-
-    .plan-details-grid{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      margin-top:24px;
-    }
-    .plan-details-grid details{
-      padding:16px 18px;
-      border-radius:18px;
-      background:#fff;
-      box-shadow:var(--shadow);
-      border:1px solid var(--line);
-      transition:.1s;
-    }
-    .plan-details-grid details[open]{background-color:#fffdfa}
-    .plan-details-grid summary{
-      cursor:pointer;
-      font-size:18px;
-      font-weight:700;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .plan-details-grid summary::before{
-      content:"▶";
-      color:var(--accent);
-      font-size:14px;
-    }
-    .plan-details-grid details[open] summary::before{content:"▼"}
-
-    .form-card{
-      padding:32px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      align-items:center;
-    }
-    .form-box{display:grid;gap:14px}
-    .form-box input{
-      width:100%;
-      padding:14px 16px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      font:inherit;
-      background:#fff;
-    }
-    .form-box button{
-      padding:15px 18px;
-      border:none;
-      border-radius:14px;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .honeypot{
-      position:absolute !important;
-      left:-9999px !important;
-      opacity:0 !important;
-      pointer-events:none !important;
-      height:0 !important;
-      width:0 !important;
-    }
-
-    .reviews-grid{
-  display:flex;
-  flex-wrap:nowrap;
-  overflow-x:auto;
-  gap:16px;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  padding-bottom:12px;
-}
-
-.reviews-grid .review-card{
-  flex:0 0 220px;
-  scroll-snap-align:start;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:#fff;
-  box-shadow:var(--shadow);
-}
-
-.review-card video,
-.review-card img{
-  display:block;
-  width:100%;
-  aspect-ratio:9/16;
-  object-fit:cover;
-  background:#000;
-}
-
-    
-
-    .gallery-grid{
-      display:flex;
-      flex-wrap:nowrap;
-      overflow-x:auto;
-      gap:16px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:12px;
-    }
-    .gallery-grid .gallery-item{flex:0 0 260px;scroll-snap-align:start}
-    .gallery-item{
-      aspect-ratio:4/5;
-      border-radius:20px;
-      background:linear-gradient(145deg,#ffe0c0 0%,#fff1df 100%);
-      border:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#b8721b;
-      font-weight:700;
-      overflow:hidden;
-    }
-    .gallery-item img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-
-    
-    .map-card{
-      overflow:hidden;
-      border-radius:24px;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      background:#fff;
-    }
-    .map-card iframe{
-      display:block;
-      width:100%;
-      height:420px;
-      border:0;
-    }
-    .map-info{
-      padding:22px;
-      border-top:1px solid var(--line);
-    }
-
-      .agree-row{
-        display:flex;
-        align-items:flex-start;
-        gap:8px;
-        font-size:13px;
-        line-height:1.4;
-        color:#444;
-      }
-
-      .agree-row input{
-        width:16px;
-        height:16px;
-        margin-top:3px;
-        cursor:pointer;
-      }
-
-      .agree-row a{
-        color:var(--accent-dark);
-        text-decoration:underline;
-      }
-
-
-
-    footer{padding:36px 0 54px}
-    .footer-card{
-      padding:24px;
-      display:grid;
-      grid-template-columns:1.2fr 1fr 1fr;
-      gap:20px;
-    }
-    .footer-title{font-size:24px;font-weight:800}
-    .footer-col{display:grid;gap:10px}
-
-    @media (max-width: 980px){
-      .form-card,.footer-card,.courses-grid,.reviews-grid{grid-template-columns:1fr}
-      .hero-grid{grid-template-columns:220px 1fr}
-      .menu{display:none}
-      .burger{display:flex}
-      .nav-btn{display:none}
-      h1{font-size:34px}
-      h2{font-size:28px}
-      .section{padding:28px 0}
-      .map-card iframe{height:340px}
-    }
-
-    @media (max-width: 580px){
-      @media (max-width: 580px){
-  .reviews-grid .review-card{
-    flex:0 0 160px;
-  }
-}
-      .hero-grid{grid-template-columns:1fr}
-      .teacher-photo{
-        min-height:auto;
-        aspect-ratio:4/5;
-      }
-      .teacher-photo img{
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        object-fit:cover;
-      }
-
-      .form-card{padding:20px}
-      .hero-card{padding:22px}
-      .course-card{padding:20px}
-      .footer-card{padding:20px}
-      .wrap{padding:0 14px}
-
-      h1{font-size:30px}
-      h2{font-size:24px}
-      h3{font-size:20px}
-
-      .map-card iframe{height:280px}
-    }
-
-   
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; 
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px; 
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -545,7 +48,7 @@
 
       <div class="wrap hero-grid">
         <div class="teacher-photo">
-          <img src="00.jpg" alt="Преподаватель Вальков Даниил">
+          <img src="photo/00.jpg" alt="Преподаватель Вальков Даниил">
         </div>
 
         <div class="hero-card card">
@@ -559,7 +62,7 @@
           <p class="muted">Помогаю ученикам 9 класса спокойно и уверенно подготовиться к ОГЭ по математике.</p>
 
           <ul class="hero-list">
-            <li>более 5 лет опыта в образовании;</li>
+            <li>более 5 лет опыта подготовки к ОГЭ, ЕГЭ, ВПР;</li>
             <li>понятно объясняю даже сложные темы;</li>
             <li>мини-группы, где каждому хватает внимания;</li>
             <li>системная подготовка без перегруза.</li>
@@ -568,11 +71,10 @@
       </div>
     </section>
 
-      <section class="section" id="video">
+    <section class="section" id="video">
       <div class="wrap">
         <h2>Посмотрите, как проходит обучение</h2>
         <div class="video-card card">
-          <!-- Адаптивный контейнер для видео -->
           <div class="video-container">
             <iframe 
               src="https://kinescope.io/qxrbc64sBj8VXyGmQJTC1D" 
@@ -581,11 +83,10 @@
               allowfullscreen>
             </iframe>
           </div>
-          <p class="muted" style="margin-top:16px;text-align:center;">Короткое видео о формате занятий и преподавателе</p>
+          <p class="muted" style="margin-top:16px;text-align:center;">Короткое видео о нашем центре</p>
         </div>
       </div>
     </section>
-
 
     <section class="section" id="courses">
       <div class="wrap">
@@ -597,7 +98,7 @@
             <div class="pill-row">
               <span class="pill">16 занятий</span>
               <span class="pill">90 минут</span>
-              <span class="pill">2 раза в неделю</span>
+              <span class="pill">2-3 раза в неделю</span>
               <span class="pill">до 6 учеников</span>
             </div>
 
@@ -634,18 +135,14 @@
           <form class="form-box" id="signup-form" novalidate>
             <input type="text" name="name" id="name" placeholder="Имя" maxlength="60" required>
             <input type="tel" name="phone" id="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" maxlength="18" required>
-
             <input type="text" name="website" id="website" class="honeypot" tabindex="-1" autocomplete="off">
 
-
-            <label style="font-size:14px;line-height:1.4;display:flex;gap:8px;align-items:flex-start;">
-  
-                              <div class="agree-row">
-                    <input type="checkbox" id="agree" required>
-                    <label for="agree">
-                      Я согласен с <a href="privacy.html" target="_blank">политикой обработки данных</a>
-                    </label>
-                  </div>
+            <div class="agree-row">
+              <input type="checkbox" id="agree" required>
+              <label for="agree">
+                Я согласен с <a href="privacy.html" target="_blank">политикой обработки данных</a>
+              </label>
+            </div>
 
             <button type="submit" id="signup-btn">Отправить заявку</button>
             <div id="signup-status" style="font-size:14px;color:var(--muted);"></div>
@@ -663,7 +160,7 @@
           <details>
             <summary>День открытых дверей</summary>
             <div style="margin-top:14px;line-height:1.7;">
-              <p><strong>4 апреля</strong></p>
+              <p><strong>11 апреля</strong></p>
               <ul class="list">
                 <li>знакомство с преподавателем;</li>
                 <li>рассказ о формате подготовки;</li>
@@ -679,7 +176,7 @@
               <p>Продолжительность курса: <strong>2 месяца</strong></p>
               <ul class="list">
                 <li>16 занятий;</li>
-                <li>2 раза в неделю;</li>
+                <li>2-3 раза в неделю;</li>
                 <li>занятие 90 минут;</li>
                 <li>группы до 6 учеников.</li>
               </ul>
@@ -691,7 +188,8 @@
             <div style="margin-top:14px;line-height:1.7;">
               <p><strong>1 группа:</strong><br>вторник 18:00<br>четверг 18:00</p>
               <p><strong>2 группа:</strong><br>четверг 16:30<br>суббота 14:00</p>
-              <p>Период занятий: <strong>7 апреля — 30 мая</strong></p>
+              <p><strong>В конце мая будем составлять расписание, под желания учеников</p>
+              <p>Период занятий: <strong>14 апреля — 30 мая</strong></p>
               <p>Экзамен: <strong>2 июня</strong></p>
             </div>
           </details>
@@ -715,16 +213,16 @@
       <div class="wrap">
         <h2>Фото Центра</h2>
         <div class="gallery-grid">
-          <div class="gallery-item"><img src="55.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="66.jpg" alt="Фото центра 1"></div>
-          <div class="gallery-item"><img src="11.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="22.jpg" alt="Фото центра 1"></div>
-          <div class="gallery-item"><img src="33.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="77.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="88.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="99.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="1010.jpg" alt="Фото центра 2"></div>
-          <div class="gallery-item"><img src="44.jpg" alt="Фото центра 1"></div>
+          <div class="gallery-item"><img src="photo/55.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/66.jpg" alt="Фото центра 1"></div>
+          <div class="gallery-item"><img src="photo/11.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/22.jpg" alt="Фото центра 1"></div>
+          <div class="gallery-item"><img src="photo/33.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/77.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/88.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/99.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/1010.jpg" alt="Фото центра 2"></div>
+          <div class="gallery-item"><img src="photo/44.jpg" alt="Фото центра 1"></div>
         </div>
       </div>
     </section>
@@ -732,30 +230,26 @@
     <section class="section" id="reviews">
   <div class="wrap">
     <h2>Отзывы</h2>
-
     <div class="reviews-grid">
       <div class="review-card">
-        <video controls preload="metadata" playsinline>
-          <source src="1.mp4" type="video/mp4">
-        </video>
+        <div class="video-container" style="aspect-ratio: 9/16;">
+          <iframe 
+            src="https://kinescope.io/ha3xeYjkQHoPNUe5ccUNLe" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
-
       <div class="review-card">
-        <video controls preload="metadata" playsinline>
-          <source src="1.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="review-card">
-        <video controls preload="metadata" playsinline>
-          <source src="2.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="review-card">
-        <video controls preload="metadata" playsinline>
-          <source src="2.mp4" type="video/mp4">
-        </video>
+        <div class="video-container" style="aspect-ratio: 9/16;">
+          <iframe 
+            src="https://kinescope.io/3hEsohBPjbbp4D9ShEuBR1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -792,7 +286,7 @@
         <div class="footer-col">
           <strong>Контакты</strong>
           <div><a href="tel:+79016957520">8 (901) 695-75-20</a></div>
-          <div><a href="https://vk.com/" target="_blank" rel="noopener noreferrer">ВКонтакте</a></div>
+          <div><a href="https://vk.ru/mathivanovo" target="_blank" rel="noopener noreferrer">ВКонтакте</a></div>
         </div>
 
         <div class="footer-col">
@@ -805,164 +299,6 @@
     </div>
   </footer>
 
-  <script>
-    (function() {
-      var burger = document.getElementById('burger');
-      var mobileMenu = document.getElementById('mobile-menu');
-
-      burger.addEventListener('click', function() {
-        burger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-      });
-
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          burger.classList.remove('open');
-          mobileMenu.classList.remove('open');
-        });
-      });
-    })();
-
-    (function() {
-      var phoneInput = document.getElementById('phone');
-
-      function formatPhone(value) {
-        var digits = value.replace(/\D/g, '');
-
-        if (digits.startsWith('8')) digits = '7' + digits.slice(1);
-        if (!digits.startsWith('7')) digits = '7' + digits;
-
-        digits = digits.substring(0, 11);
-
-        var result = '+7';
-        if (digits.length > 1) result += ' (' + digits.substring(1, 4);
-        if (digits.length >= 5) result += ') ' + digits.substring(4, 7);
-        if (digits.length >= 8) result += '-' + digits.substring(7, 9);
-        if (digits.length >= 10) result += '-' + digits.substring(9, 11);
-
-        return result;
-      }
-
-      function validatePhone() {
-        var digits = phoneInput.value.replace(/\D/g, '');
-        if (digits.length !== 11) {
-          phoneInput.setCustomValidity('Введите полный номер телефона');
-          return false;
-        }
-        phoneInput.setCustomValidity('');
-        return true;
-      }
-
-      phoneInput.addEventListener('input', function() {
-        phoneInput.value = formatPhone(phoneInput.value);
-        validatePhone();
-      });
-
-      phoneInput.addEventListener('blur', validatePhone);
-    })();
-
-    (function() {
-      var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEXxljoMFqczf3gBF41FhZkvKgmn-yJHA_FFutU1IO4iAXax-VB-TcaN9Mki8YInaCDQ/exec";
-      var FORM_SECRET = "z2_form_secret_917";
-
-
-      
-
-
-      var form = document.getElementById('signup-form');
-      var btn = document.getElementById('signup-btn');
-      var status = document.getElementById('signup-status');
-
-      function cleanName(str, maxLen) {
-        return String(str || '')
-          .replace(/[^a-zA-Zа-яА-ЯёЁ\s\-]/g, '')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .slice(0, maxLen);
-      }
-
-      function cleanPhone(str, maxLen) {
-        return String(str || '')
-          .replace(/[^\d\+\(\)\-\s]/g, '')
-          .trim()
-          .slice(0, maxLen);
-      }
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        var honeypot = document.getElementById('website').value;
-        if (honeypot) {
-          status.textContent = 'Ошибка отправки';
-          status.style.color = 'red';
-          return;
-        }
-
-        var name = cleanName(document.getElementById('name').value, 60);
-        var phone = cleanPhone(document.getElementById('phone').value, 18);
-
-        var digits = phone.replace(/\D/g, '');
-
-        if (name.length < 2) {
-          status.textContent = 'Введите корректное имя';
-          status.style.color = 'red';
-          return;
-        }
-
-        if (digits.length !== 11) {
-          status.textContent = 'Введите корректный номер телефона';
-          status.style.color = 'red';
-          return;
-        }
-
-
-        var agree = document.getElementById('agree').checked;
-
-        if (!agree) {
-          status.textContent = 'Подтвердите согласие';
-          status.style.color = 'red';
-          return;
-        }
-        
-        btn.disabled = true;
-        btn.textContent = 'Отправляем...';
-        status.textContent = '';
-        status.style.color = 'var(--muted)';
-
-        var data = {
-          name: name,
-          phone: phone,
-          subject: 'Математика',
-          comment: '',
-          secret: FORM_SECRET
-        };
-
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(function(response) {
-          return response.text();
-        })
-        .then(function() {
-          status.textContent = 'Заявка отправлена';
-          status.style.color = 'green';
-          form.reset();
-        })
-        .catch(function() {
-          status.textContent = 'Ошибка отправки';
-          status.style.color = 'red';
-        })
-        .finally(function() {
-          btn.disabled = false;
-          btn.textContent = 'Отправить заявку';
-        });
-      });
-    })();
-  </script>
+  <script src="1.js"></script>
 </body>
 </html>
-
