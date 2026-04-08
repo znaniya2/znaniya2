@@ -54,8 +54,8 @@
     })();
 
     (function() {
-      var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEXxljoMFqczf3gBF41FhZkvKgmn-yJHA_FFutU1IO4iAXax-VB-TcaN9Mki8YInaCDQ/exec";
-      var FORM_SECRET = "z2_form_secret_917";
+      var SCRIPT_URL = "";
+      var FORM_SECRET = "";
 
 
       
